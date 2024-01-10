@@ -59,19 +59,24 @@ def main(sentences:List[str], dic:Dict[int, Dict[str, int]], limit_score:Union[i
 
 
 if __name__ == "__main__":
-    assert len(sys.argv) == 3, "Arguments should be passed. \nExample: `python gather_dictionary.py {TARGET_TEXT_PATH} {DICTIONARY_PATH}`"
-    target_path, dic_path = sys.argv[1:]
-    
-    copy(target_path, target_path+".backup")
-    
+    assert len(sys.argv) > 3, "Arguments should be passed. \nExample: `python gather_dictionary.py ${DICTIONARY_PATH} ${TARGET_TEXT_PATH} ${SAVE_TEXT_PATH}`"
+    dic_path, *paths = sys.argv[1:]
+    if len(paths) == 1:
+        target_path = paths[0]
+        save_path = paths[0]
+        # backup the original file
+        copy(target_path, target_path+".backup")
+    else:
+        target_path, save_path = paths
+
     with open(target_path) as f:
         sentences = f.readlines()
-    
+
     with open(dic_path) as f:
         dic = json.load(f)
-    
+
     sentences = main(sentences, dic)
-    
-    with open(target_path, "w") as wf:
+
+    with open(save_path, "w") as wf:
         for sentence in sentences:
             wf.write(sentence+"\n")

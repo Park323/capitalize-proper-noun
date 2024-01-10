@@ -34,4 +34,4 @@ These are used for handling various format of text files.
 
 Capitalize proper nouns in target text.
 
-`python capitalize.py ${TARGET_PATH} ${DIC_PATH}`
+`python capitalize.py ${DIC_PATH} ${TARGET_PATH} ${SAVE_PATH}`

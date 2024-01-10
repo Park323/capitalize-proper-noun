@@ -66,8 +66,8 @@ def main(paths:Union[str, List[str]], save_path:str=None, max_key_num:int=5):
 
 
 if __name__ == "__main__":
-    assert len(sys.argv) > 1, "Arguments should be passed. \nExample: `python gather_dictionary.py {TEXTPATH}`"
-    paths = sys.argv[1:]
+    assert len(sys.argv) > 1, "Arguments should be passed. \nExample: `python gather_dictionary.py ${SAVEPATH} ${TEXTPATH}`"
+    save_path, *paths = sys.argv[1:]
     
-    main(paths)
+    main(paths, save_path)
     
