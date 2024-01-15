@@ -30,7 +30,10 @@ def capitalize_sentence(sentence, dic, max_word_num:int=5):
             key = (" ".join(words[sid:sid+word_num])).lower()
             if cap:=dic.get(key, None):
                 words[sid:sid+word_num] = cap.split()
-    words[0] = words[0].capitalize()
+                
+    # Exclude empty sequences
+    if words:
+        words[0] = words[0].capitalize()
     sentence = " ".join(words)
     return sentence
     
